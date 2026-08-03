@@ -3,34 +3,60 @@ services:
   web:
     build: .
     container_name: animalwelfare2-app
+
+    command: gunicorn --workers 3 --bind 0.0.0.0:8000 run:app
+
     ports:
       - "8000:8000"
+
     depends_on:
       - db
+
     environment:
       DATABASE_URL: postgresql://postgres:password@db:5432/animaldb
+      SECRET_KEY: saveanimal123
+
 
 
   db:
     image: postgres:16
+
     container_name: animalwelfare2-db
+
     restart: always
+
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: animaldb
+
+    ports:
+      - "5432:5432"
+
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 
+
+
+
   nginx:
     image: nginx:latest
+
     container_name: animalwelfare2nginx
+
     ports:
       - "8080:80"
+
     depends_on:
       - web
 
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./static:/app/static
+
+
 
 volumes:
+
   postgres_data:

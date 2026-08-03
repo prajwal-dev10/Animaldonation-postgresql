@@ -11,6 +11,7 @@ from bcrypt import hashpw,checkpw,gensalt
 from forms import AnimalForm,LoginForm,SignupForm,addeventForm,DonationForm
 from dotenv import load_dotenv
 import os
+from .models import Animal, User, Event, Donate
 
 load_dotenv()
 
@@ -29,7 +30,7 @@ app.config["SECRET_KEY"] = os.getenv(
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["WTF_CSRF_ENABLED"] = True
 app.config["UPLOAD_FOLDER"] = "static/uploads"
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -37,32 +38,6 @@ login_manager.init_app(app)
 def create_app_context():
     with app.app_context():
         db.create_all()
-
-class Donate(db.Model):    
-    id = db.Column(db.Integer,primary_key = True)
-    Firstname = db.Column(db.String(100),nullable = False)
-    Lastname =  db.Column(db.String(100),nullable = False)
-    Address =  db.Column(db.String(100),nullable = False)
-    Email = db.Column(db.String(100),nullable = False)
-    Image = db.Column(db.String(100),nullable = False)
-    Amount = db.Column(db.Integer,nullable = False)
-
-        
-
-class Animal(db.Model):
-    id = db.Column(db.Integer,primary_key = True)
-    catagory = db.Column(db.String(50),nullable=True)
-    name = db.Column(db.String(100),nullable=False)
-    description = db.Column(db.Text,nullable=False)
-    image = db.Column(db.String(200),nullable = False) #database has filename so i use string here
-
-class User(db.Model,UserMixin):
-    id = db.Column(db.Integer,primary_key = True)
-    username = db.Column(db.String(120),nullable = False)   
-    password = db.Column(db.String(120),nullable = False)
-    email = db.Column(db.String(120),nullable = False)
-    is_admin = db.Column(db.Boolean,default=False)
-
 
 
 
@@ -90,13 +65,7 @@ def unauthorized_callback():
     return redirect('/login')
 
 
-class Event(db.Model):
-    id = db.Column(db.Integer,primary_key = True)
-    eventname = db.Column(db.String(50),nullable = False)
-    date = db.Column(db.Date,nullable = False)
-    description = db.Column(db.String(200),nullable = True)
-    image = db.Column(db.String(200),nullable = False)
-    
+
 
 @app.route('/')
 def home():
