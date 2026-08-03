@@ -2415,3 +2415,735 @@ body::before,
 body::after {
     pointer-events: none;
 }
+
+
+/* =====================================================
+   FINAL RESPONSIVE + BROWSER OPTIMIZATION PATCH
+   Keep this at the END of CSS
+===================================================== */
+
+
+/* GLOBAL SAFETY */
+html, body {
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+
+img {
+    max-width:100%;
+    height:auto;
+}
+
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Better desktop scaling */
+.hero,
+.about-container,
+.event-card,
+.animal-card,
+.form-container,
+.login-box {
+    max-width:1400px;
+}
+
+
+
+/* =========================
+   LARGE DESKTOP
+========================= */
+
+@media (min-width:1200px){
+
+    .hero-impact h1 {
+        font-size:4rem;
+    }
+
+
+    .about-image img {
+        width:350px;
+        height:350px;
+        transform:none;
+    }
+
+
+    .login-animation {
+        width:600px;
+        height:600px;
+    }
+
+}
+
+
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:1024px){
+
+
+    header {
+        padding:18px 30px;
+    }
+
+
+    .logo,
+    .logo-text {
+        font-size:40px;
+    }
+
+
+    nav {
+        gap:18px;
+    }
+
+
+    nav a,
+    nav li {
+        font-size:18px;
+    }
+
+
+
+    .hero {
+
+        margin:30px;
+        padding:60px 40px;
+
+        gap:40px;
+
+    }
+
+
+    .hero-impact h1 {
+
+        font-size:3rem;
+
+    }
+
+
+    .about-image img {
+
+        width:300px;
+        height:300px;
+
+    }
+
+
+    .card-container {
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+
+
+    .event-card {
+
+        gap:25px;
+
+    }
+
+
+    .event-image {
+
+        width:240px;
+
+    }
+
+
+    .animal-left {
+
+        width:220px;
+
+    }
+
+
+    .animal-left img {
+
+        width:220px;
+        height:200px;
+
+    }
+
+
+
+    .login-animation {
+
+        width:400px;
+        height:400px;
+
+    }
+
+
+}
+
+
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+
+    /* BODY */
+
+    body {
+
+        line-height:1.6;
+
+    }
+
+
+
+    /* HEADER */
+
+    header {
+
+        flex-direction:column;
+        padding:15px 20px;
+        gap:15px;
+
+    }
+
+
+    .logo,
+    .logo-text {
+
+        font-size:32px;
+
+    }
+
+
+    nav {
+
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+
+    }
+
+
+    nav a,
+    nav li {
+
+        font-size:15px;
+
+    }
+
+
+
+
+
+    /* HERO */
+
+    .hero {
+
+        margin:15px;
+
+        padding:35px 20px;
+
+        flex-direction:column;
+
+        text-align:center;
+
+        border-radius:18px;
+
+    }
+
+
+
+    .hero-impact {
+
+        padding:25px 18px;
+
+    }
+
+
+
+    .hero-impact h1,
+    .hero h1 {
+
+        font-size:2.1rem;
+
+        line-height:1.2;
+
+    }
+
+
+
+    .hero-impact p {
+
+        font-size:1rem;
+
+        padding-left:10px;
+
+        line-height:1.7;
+
+    }
+
+
+
+    .hero-buttons {
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+
+
+    .hero-buttons a,
+    .btn {
+
+        width:100%;
+
+    }
+
+
+
+
+
+    /* SECTION TITLES */
+
+    h1 {
+
+        font-size:2.2rem;
+
+    }
+
+
+    h2,
+    .about h2,
+    .preview-section h2 {
+
+        font-size:2rem;
+
+    }
+
+
+    h3 {
+
+        font-size:1.2rem;
+
+    }
+
+
+    p {
+
+        font-size:1rem;
+
+    }
+
+
+
+
+
+    /* ABOUT */
+
+    .about {
+
+        padding:50px 20px;
+
+    }
+
+
+    .about-container {
+
+        flex-direction:column;
+
+        gap:30px;
+
+    }
+
+
+
+    .about-text {
+
+        text-align:center;
+
+    }
+
+
+    .about-founder {
+
+        font-size:1rem;
+
+        padding:18px;
+
+    }
+
+
+    .about-image {
+
+        transform:none;
+
+    }
+
+
+    .about-image img {
+
+        width:240px;
+
+        height:240px;
+
+        transform:none;
+
+    }
+
+
+    .about-image span {
+
+        font-size:1.3rem;
+
+    }
+
+
+
+
+
+    /* CARDS */
+
+    .card-container {
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+
+        padding:0 20px;
+
+    }
+
+
+    .card img {
+
+        height:200px;
+
+    }
+
+
+
+
+
+    /* ANIMAL CARDS */
+
+    .animal-list {
+
+        padding:15px;
+
+    }
+
+
+
+    .animal-card {
+
+        flex-direction:column;
+
+        padding:15px;
+
+        text-align:center;
+
+    }
+
+
+    .animal-left {
+
+        width:100%;
+
+    }
+
+
+
+    .animal-left img {
+
+        width:100%;
+
+        height:220px;
+
+    }
+
+
+
+    .animal-right {
+
+        width:100%;
+
+    }
+
+
+
+    .animal-text {
+
+        font-size:1rem;
+
+        text-align:left;
+
+    }
+
+
+
+    .admin-actions {
+
+        justify-content:center;
+
+    }
+
+
+
+
+
+    /* EVENTS */
+
+
+    .event-display {
+
+        padding:40px 15px;
+
+    }
+
+
+
+    .event-card {
+
+        flex-direction:column;
+
+        padding:20px;
+
+        text-align:center;
+
+    }
+
+
+
+    .event-image {
+
+        width:100%;
+
+    }
+
+
+
+    .event-image img {
+
+        height:220px;
+
+    }
+
+
+
+    .event-content p {
+
+        border-left:none;
+
+        padding:0;
+
+        font-size:1rem;
+
+        text-align:left;
+
+    }
+
+
+
+
+
+
+    /* FILTER */
+
+
+    .animal-filter {
+
+        margin:20px 15px;
+
+        padding:18px;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+
+
+    .animal-filter form {
+
+        flex-direction:column;
+
+    }
+
+
+
+    .animal-filter select,
+    .filter-btn {
+
+        width:100%;
+
+    }
+
+
+
+
+
+
+    /* FORM */
+
+
+    .form-container {
+
+        margin:20px 15px;
+
+        padding:25px 18px;
+
+    }
+
+
+    .form-title {
+
+        font-size:2rem;
+
+    }
+
+
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+
+        font-size:16px;
+
+    }
+
+
+
+
+
+
+    /* LOGIN */
+
+
+    .login-wrapper {
+
+        padding:20px;
+
+        gap:30px;
+
+    }
+
+
+
+    .login-box {
+
+        width:100%;
+
+        padding:25px;
+
+    }
+
+
+
+    .login-box h2 {
+
+        font-size:2rem;
+
+    }
+
+
+    .login-animation {
+
+        width:250px;
+
+        height:250px;
+
+    }
+
+
+
+
+
+
+    /* QR */
+
+    .qr-image {
+
+        width:170px;
+
+        height:170px;
+
+    }
+
+
+
+    footer {
+
+        text-align:center;
+
+        padding:25px 15px;
+
+    }
+
+
+}
+
+
+
+
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media(max-width:380px){
+
+
+    .logo,
+    .logo-text {
+
+        font-size:27px;
+
+    }
+
+
+    .hero-impact h1 {
+
+        font-size:1.8rem;
+
+    }
+
+
+    .hero-impact {
+
+        padding:18px;
+
+    }
+
+
+    .about-image img {
+
+        width:200px;
+
+        height:200px;
+
+    }
+
+
+    .btn {
+
+        font-size:14px;
+
+        padding:12px;
+
+    }
+
+
+}
