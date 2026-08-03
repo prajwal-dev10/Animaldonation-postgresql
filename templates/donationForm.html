@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="donation-page">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    
+
+    <!-- LOTTIE + FORM WRAPPER -->
+    <div class="lottie-wrapper">
+
+        <!-- LOTTIE -->
+        <div class="form-lottie">
+            <dotlottie-wc
+                src="https://lottie.host/c323b6eb-e67f-425c-8ff1-299e88411014/w32SaTlGjW.lottie"
+                autoplay
+                loop>
+            </dotlottie-wc>
+        </div>
+
+        <!-- FORM CARD -->
+        <div class="form-container">
+            <h2 class="form-title">💚 Support Our Cause</h2>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {{ form.csrf_token }}
+
+                <div class="form-group">
+                    {{ form.Firstname.label }}
+                    {{ form.Firstname }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.Lastname.label }}
+                    {{ form.Lastname }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.Address.label }}
+                    {{ form.Address }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.Email.label }}
+                    {{ form.Email }}
+                </div>
+
+                <!-- QR -->
+                <div class="qr-box">
+                    <p class="qr-title">Scan this QR code to make payment:</p>
+
+                    <img src="{{ url_for('static', filename='QR.jpg') }}"
+                         alt="QR Code"
+                         class="qr-image">
+                </div>
+
+                <div class="form-group">
+                    {{ form.Image.label }}
+                    {{ form.Image }}
+                </div>
+
+                <div class="form-group">
+                    {{ form.Amount.label }}
+                    {{ form.Amount }}
+                </div>
+
+                <div style="text-align:center; margin-top:20px;">
+                    {{ form.submit(class="submit-btn") }}
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

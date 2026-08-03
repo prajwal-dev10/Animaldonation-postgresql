@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2 class="form-title">Edit Animal</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name }}
+        </div>
+
+        <div class="form-group">
+            {{ form.catagory.label }}
+            {{ form.catagory }}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description }}
+        </div>
+
+        <div class="form-group">
+            <label>Current Image</label><br>
+            <img src="{{ url_for('static', filename='uploads/' + animal.image) }}" 
+                 width="220" 
+                 style="border-radius: 12px; margin-top:10px;">
+        </div>
+
+        <div class="form-group">
+            {{ form.image.label }}
+            {{ form.image }}
+            <small style="color: rgba(255,255,255,0.6);">
+                Upload new image only if you want to change it
+            </small>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Update Animal
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

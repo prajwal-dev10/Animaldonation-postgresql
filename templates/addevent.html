@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2 class="form-title">Add Event</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {{ form.csrf_token }}
+
+        <div class="form-group">
+            {{ form.eventname.label }}
+            {{ form.eventname }}
+        </div>
+
+        <div class="form-group">
+            {{ form.date.label }}
+            {{ form.date }}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description }}
+        </div>
+
+        <div class="form-group">
+            {{ form.image.label }}
+            {{ form.image }}
+        </div>
+
+        {{ form.submit(class="submit-btn") }}
+
+    </form>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- FILTER -->
+<div class="animal-filter">
+    <form method="GET" action="/animal">
+        <label>Animal Type:</label>
+
+        <select name="catagory">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="cow">Cow</option>
+            <option value="bird">Bird</option>
+        </select>
+
+        <button type="submit" class="filter-btn">Filter</button>
+    </form>
+
+    <a href="{{ url_for('addanimal') }}" class="add-btn">+ Add Animal</a>
+</div>
+
+<h2 class="page-title">Animals</h2>
+
+<!-- LIST -->
+<section class="animal-list">
+
+{% for animal in animals.items %}
+
+<div class="animal-card">
+
+    <!-- LEFT SIDE -->
+    <div class="animal-left">
+
+        <img src="{{ url_for('static', filename='uploads/' + animal.image) }}" alt="{{ animal.name }}">
+
+        <div class="animal-meta">
+            <h3>{{ animal.name }}</h3>
+            <span class="category">{{ animal.catagory }}</span>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="animal-right">
+
+        <!-- DESCRIPTION WRAPPER -->
+        <div class="animal-desc">
+
+            <p class="animal-text" id="text-{{ animal.id }}">
+                {{ animal.description }}
+            </p>
+
+        </div>
+
+        <!-- READ MORE BUTTON -->
+        <button class="read-btn" onclick="toggleText('{{ animal.id }}', this)">
+            Read More
+        </button>
+
+        <!-- ADMIN ACTIONS -->
+        {% if current_user.is_authenticated and current_user.is_admin %}
+        <div class="admin-actions">
+            <a class="edit-btn" href="{{ url_for('edit_animal', animal_id=animal.id) }}">Edit</a>
+
+            <form method="POST" action="{{ url_for('delete_animal', animal_id=animal.id) }}">
+                <button type="submit" class="delete-btn">Delete</button>
+            </form>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+
+
+</section>
+
+<div class="pagination">
+
+    {% if animals.has_prev %}
+        <a href="{{ url_for('showanimals', page=animals.prev_num) }}">Previous</a>
+    {% endif %}
+
+    <span>Page {{ animals.page }} of {{ animals.pages }}</span>
+
+    {% if animals.has_next %}
+        <a href="{{ url_for('showanimals', page=animals.next_num) }}">Next</a>
+    {% endif %}
+
+</div>
+<!-- JS -->
+<script>
+function toggleText(id, btn) {
+    const text = document.getElementById("text-" + id);
+    const wrapper = text.closest(".animal-desc");
+
+    wrapper.classList.toggle("expanded");
+
+    btn.innerText = wrapper.classList.contains("expanded")
+        ? "Read Less"
+        : "Read More";
+}
+</script>
+
+<script>
+    document.querySelectorAll(".animal-desc").forEach(desc => {
+        const isOverflowing = desc.scrollHeight > desc.clientHeight;
+    
+        if (!isOverflowing) {
+            desc.classList.add("no-fade");
+        }
+    });
+    </script>
+
+{% endblock %}

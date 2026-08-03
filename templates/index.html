@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <div class = "hero-impact">
+        <h1>Help Save Animals</h1>
+        <p>
+            Every life matters, no matter how small. Animals deserve care, protection, and kindness, especially those who are injured, abandoned, or in need of help. With your support, we can rescue them, provide proper treatment, and give them a safe place to heal and live with dignity. Your small help can make a real difference by bringing hope, healing, and a second chance at life to these innocent beings.
+        </p>
+        
+        </div>
+        <br>
+
+        <div class="hero-buttons">
+            <a href="/animal" class="btn">View Animals</a>
+            <a href="/donationform" class="btn btn-primary">Donate Now</a>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img src="/static/animalhomepage.png" alt="Animals">
+    </div>
+</section>
+
+
+<!-- ABOUT SECTION -->
+<section class="about">
+    <h2>About This Website</h2>
+
+    <div class="about-container">
+
+        <!-- TEXT -->
+        <div class="about-text">
+            <p>
+                We are dedicated to rescuing stray and injured animals,
+                organizing awareness events, and connecting people who care.
+            </p>
+
+            <p class="about-founder">
+                Created and designed by <b>Prajwal K.C</b>, this platform is dedicated to rescuing,
+                protecting, and caring for animals in need. It was created with a simple goal —
+                to give innocent animals a second chance at life and encourage people to help
+                through small but meaningful contributions.
+            </p>
+        </div>
+
+        <!-- PROFILE IMAGE -->
+        <div class="about-image">
+            <img src="/static/Founder.jpeg" alt="Founder Photo">
+            <br>
+            <span>Creator/Developer</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- LATEST ANIMALS -->
+<section class="preview-section">
+    <h2>Latest Animals</h2>
+
+    <div class="card-container">
+
+        {% for animal in animals %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' + animal.image) }}">
+            <h3>{{ animal.name }}</h3>
+            <p>{{ animal.description[:80] }}...</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <a href="/animal" class="view-more">View All Animals</a>
+</section>
+
+
+
+<section class="preview-section">
+    <h2>Upcoming Events</h2>
+
+    <div class="card-container">
+
+        {% for event in events %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' + event.image) }}">
+            <h3>{{ event.eventname }}</h3>
+            <p>{{ event.description[:80] }}...</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <a href="/event" class="view-more">View All Events</a>
+</section>
+
+
+
+<section class="cta">
+    <h2>Your Help Saves Lives</h2>
+    <p>Even a small donation helps us feed and rescue animals.</p>
+    <br>
+
+    <a href="/donationform" class="btn btn-primary">
+        Donate Now
+    </a>
+</section>
+
+{% endblock %}

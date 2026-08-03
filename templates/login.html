@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="login-wrapper">
+
+    <!-- LEFT: FORM -->
+    <div class="login-box">
+
+        <h2>Welcome Back</h2>
+
+        <form method="POST" action="/login">
+            {{ form.csrf_token }}
+
+            <label>{{ form.username.label }}</label>
+            {{ form.username }}
+
+            <label>{{ form.password.label }}</label>
+            {{ form.password }}
+
+            {{ form.submit }}
+        </form>
+
+        <a href="/signup">Sign up here</a>
+    </div>
+
+    <!-- RIGHT: LOTTIE ANIMATION -->
+    <div class="login-animation">
+      <dotlottie-wc
+      src="https://lottie.host/f60e63de-1304-4452-acc1-66248da3ef72/xnKcdQsFdd.lottie"
+      style="width: 300px; height: 300px;"
+      autoplay
+      loop>
+    </dotlottie-wc>
+
+  </div>
+
+</div>
+
+
+
+<script>
+   const cat = document.querySelector(".login-animation");
+   
+   let mouseX = 0, mouseY = 0;
+   let currentX = 0, currentY = 0;
+   
+   document.addEventListener("mousemove", (e) => {
+       mouseX = (e.clientX - window.innerWidth / 2) / 20;
+       mouseY = (e.clientY - window.innerHeight / 2) / 20;
+   });
+   
+   function animate() {
+       currentX += (mouseX - currentX) * 0.08;
+       currentY += (mouseY - currentY) * 0.08;
+   
+       cat.style.transform = `translate(${currentX}px, ${currentY}px)`;
+   
+       requestAnimationFrame(animate);
+   }
+   
+   animate();
+   </script>
+
+{% endblock %}

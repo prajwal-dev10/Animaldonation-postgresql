@@ -1,0 +1,36 @@
+services:
+
+  web:
+    build: .
+    container_name: animalwelfare2-app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:password@db:5432/animaldb
+
+
+  db:
+    image: postgres:16
+    container_name: animalwelfare2-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: animaldb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+  nginx:
+    image: nginx:latest
+    container_name: animalwelfare2nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+
+
+volumes:
+  postgres_data:

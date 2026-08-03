@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="sloths,climbingsloths,lazy animal">
+    <link rel="shortcut icon" href="/static/favicon.png">
+    <title>Animal welfare</title>
+    <link rel = "stylesheet" href="{{url_for('static',filename ='index.css')}}">
+</head>
+
+
+<body>
+    <header> <a href="#" target="_blank">
+        <div class="logo">
+            <span class="logo-text">Animal Welfare Donation</span>
+        </div>
+        
+    </div>
+    </a>
+    <nav>
+    <a href="/">HOME</a>
+    <a href="/animal">Animal</a>
+    <a href="/event">events</a>
+    {% if current_user.is_authenticated %}
+         <li style="color: var(--white);">{{ current_user.username }}<a href="/logout">:Logout</a></li>
+    {% else %}
+         <li> <a href = "/login">Login</a></li>
+    {% endif %} 
+    
+    {% if current_user.is_admin %}
+         <a href = "/donorrequest"> Donor list </a>
+    {% endif %}
+        
+     </nav>
+    </header>
+    
+    
+    
+    <!--this will have the banner image in it -->
+    {% block content %}
+    {% endblock content %}
+     <footer>
+      <span>
+        &copy;<!--for copyright symbol-->
+        <script>
+            document.write(new Date().getFullYear())
+
+        </script>
+       by Prajwal K.C. All rights are reserved.
+      </span>
+    </footer>
+    <!--tiny png for compressing
+    unsplash for images-->
+
+
+<script
+  src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js"
+  type="module">
+</script>    
+    
+</body>
+</html>
