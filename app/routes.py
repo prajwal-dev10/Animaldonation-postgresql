@@ -874,3 +874,8 @@ def delete_donor(id):
     return redirect(
         url_for("main.donorlist")
     )
+@main.route("/health")
+def health():
+    return {
+        "status": "ok"
+    }, 200
