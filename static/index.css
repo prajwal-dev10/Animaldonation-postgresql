@@ -6337,3 +6337,449 @@ body::after {
 
 
 }
+
+/* =====================================
+   DONATION FORM FINAL RESPONSIVE FIX
+===================================== */
+
+
+/* remove huge spacing problem */
+.donation-page {
+    padding-top: 40px;
+}
+
+
+/* main wrapper */
+.lottie-wrapper {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 50px 20px;
+
+    overflow: hidden;
+
+}
+
+
+/* background lottie */
+.form-lottie {
+
+    position: absolute;
+
+    top: -80px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    opacity: 0.18;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+}
+
+
+.form-lottie dotlottie-wc {
+
+    width: 380px;
+
+    height: 380px;
+
+}
+
+
+/* form card */
+.donation-page .form-container {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 35px;
+
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+
+}
+
+
+/* title */
+.donation-page .form-title {
+
+    text-align: center;
+
+    font-size: 2.4rem;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* inputs */
+.donation-page .form-group input,
+.donation-page .form-group textarea,
+.donation-page .form-group select {
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+}
+
+
+/* labels */
+.donation-page .form-group label {
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+
+/* QR section */
+.donation-page .qr-box {
+
+    margin:25px 0;
+
+    padding:20px;
+
+}
+
+
+.donation-page .qr-image {
+
+    width:220px;
+
+    height:220px;
+
+}
+
+
+/* submit */
+.donation-page .submit-btn {
+
+    width:100%;
+
+}
+
+
+
+/* ==========================
+        MOBILE
+========================== */
+
+
+@media(max-width:768px){
+
+
+    .donation-page {
+
+        padding-top:20px;
+
+    }
+
+
+    .lottie-wrapper {
+
+        padding:20px 12px;
+
+    }
+
+
+    .form-lottie {
+
+        top:-40px;
+
+    }
+
+
+    .form-lottie dotlottie-wc {
+
+        width:220px;
+
+        height:220px;
+
+    }
+
+
+    .donation-page .form-container {
+
+        padding:20px;
+
+        border-radius:15px;
+
+    }
+
+
+    .donation-page .form-title {
+
+        font-size:1.8rem;
+
+    }
+
+
+    .donation-page .form-group input,
+    .donation-page .form-group textarea,
+    .donation-page .form-group select {
+
+        font-size:16px;
+
+        padding:12px;
+
+    }
+
+
+    .donation-page .qr-image {
+
+        width:160px;
+
+        height:160px;
+
+    }
+
+
+}
+
+/* =====================================
+   DONATION FORM FINAL RESPONSIVE FIX
+===================================== */
+
+
+/* remove huge spacing problem */
+.donation-page {
+    padding-top: 40px;
+}
+
+
+/* main wrapper */
+.lottie-wrapper {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 50px 20px;
+
+    overflow: hidden;
+
+}
+
+
+/* background lottie */
+.form-lottie {
+
+    position: absolute;
+
+    top: -80px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    opacity: 0.18;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+}
+
+
+.form-lottie dotlottie-wc {
+
+    width: 380px;
+
+    height: 380px;
+
+}
+
+
+/* form card */
+.donation-page .form-container {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 35px;
+
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+
+}
+
+
+/* title */
+.donation-page .form-title {
+
+    text-align: center;
+
+    font-size: 2.4rem;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* inputs */
+.donation-page .form-group input,
+.donation-page .form-group textarea,
+.donation-page .form-group select {
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+}
+
+
+/* labels */
+.donation-page .form-group label {
+
+    display:block;
+
+    margin-bottom:8px;
+
+}
+
+
+/* QR section */
+.donation-page .qr-box {
+
+    margin:25px 0;
+
+    padding:20px;
+
+}
+
+
+.donation-page .qr-image {
+
+    width:220px;
+
+    height:220px;
+
+}
+
+
+/* submit */
+.donation-page .submit-btn {
+
+    width:100%;
+
+}
+
+
+
+/* ==========================
+        MOBILE
+========================== */
+
+
+@media(max-width:768px){
+
+
+    .donation-page {
+
+        padding-top:20px;
+
+    }
+
+
+    .lottie-wrapper {
+
+        padding:20px 12px;
+
+    }
+
+
+    .form-lottie {
+
+        top:-40px;
+
+    }
+
+
+    .form-lottie dotlottie-wc {
+
+        width:220px;
+
+        height:220px;
+
+    }
+
+
+    .donation-page .form-container {
+
+        padding:20px;
+
+        border-radius:15px;
+
+    }
+
+
+    .donation-page .form-title {
+
+        font-size:1.8rem;
+
+    }
+
+
+    .donation-page .form-group input,
+    .donation-page .form-group textarea,
+    .donation-page .form-group select {
+
+        font-size:16px;
+
+        padding:12px;
+
+    }
+
+
+    .donation-page .qr-image {
+
+        width:160px;
+
+        height:160px;
+
+    }
+
+
+}
