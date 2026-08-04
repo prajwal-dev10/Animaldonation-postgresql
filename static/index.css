@@ -128,7 +128,7 @@
   /* ---- Layout ---- */
   --gutter: 6%;
   --content-max: 1200px;
-  --nav-break: 900px;
+  --nav-break: 992px;
 }
 
 /* =========================================================================
@@ -389,9 +389,11 @@ input:focus-visible, select:focus-visible, textarea:focus-visible {
 
 /* =========================================================================
    6. HEADER / NAVIGATION
-   Fully adaptive: a horizontal capsule bar on desktop, collapsing into a
-   centered, fully-stacked vertical menu on tablet and mobile — with no
-   JS toggle required, since the markup has none.
+   Desktop (≥993px): compact horizontal capsule bar, unchanged in spirit
+   but slightly tightened up. Tablet/mobile (≤992px): a hamburger toggle
+   (.menu-toggle) reveals #navbar as a full-width glass dropdown that
+   slides down smoothly below the sticky header — driven by the existing
+   `nav.active` class toggled in JS.
 ========================================================================= */
 
 header {
@@ -399,7 +401,7 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: var(--space-4);
-  padding: var(--space-4) var(--gutter);
+  padding: var(--space-3) var(--gutter);
   background: rgba(10, 15, 10, 0.78);
   backdrop-filter: var(--blur-panel);
   -webkit-backdrop-filter: var(--blur-panel);
@@ -409,13 +411,19 @@ header {
   z-index: 1000;
 }
 
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 .logo {
   font-family: var(--font-display);
   font-style: italic;
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  font-size: clamp(22px, 1.6vw + 14px, 32px);
+  font-size: clamp(20px, 1.3vw + 13px, 28px);
   font-weight: 600;
   color: var(--amber);
   text-shadow: 0 0 26px var(--amber-glow);
@@ -426,23 +434,43 @@ header {
 .logo:hover { transform: scale(1.03); text-shadow: 0 0 36px var(--amber-glow); }
 .logo-text { font-size: inherit; font-weight: inherit; letter-spacing: 0.2px; }
 
+/* Hamburger toggle — hidden on desktop, shown at the tablet breakpoint */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--amber);
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: background var(--transition-color), border-color var(--transition-color), transform var(--transition-base);
+}
+
+.menu-toggle:hover { background: var(--amber-soft); border-color: var(--amber-dim); }
+.menu-toggle:active { transform: scale(0.93); }
+
 nav {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
 nav a, nav li {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
@@ -451,53 +479,75 @@ nav a, nav li {
 }
 
 nav a:hover, nav li:hover { color: var(--amber); background: var(--surface); transform: translateY(-1px); }
-nav li a { padding: 0; border-radius: 0; }
-nav li a:hover { background: transparent; transform: none; text-decoration: underline; }
+nav li.user-menu { padding: var(--space-2) var(--space-3); gap: var(--space-2); }
+nav li.user-menu a { padding: 0; border-radius: 0; }
+nav li.user-menu a:hover { background: transparent; transform: none; text-decoration: underline; }
 
-/* Desktop: divider dots between capsule items instead of underline sweep */
-nav a:not(:last-child)::after {
-  content: "";
-  display: none;
-}
-
-@media (min-width: 901px) {
+@media (min-width: 993px) {
   nav { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-pill); padding: var(--space-1); }
 }
 
-/* ---- Adaptive stack: tablet and mobile ---- */
-@media (max-width: 900px) {
-  header { flex-direction: column; align-items: stretch; gap: var(--space-4); padding: var(--space-4) var(--space-5); }
-  .logo { justify-content: center; }
+/* ---- Tablet & mobile: hamburger-driven slide-down dropdown ---- */
+@media (max-width: 992px) {
+  header { padding: var(--space-3) var(--space-5); position: relative; }
+
+  .menu-toggle { display: inline-flex; }
 
   nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 999;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
     width: 100%;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    gap: var(--space-2);
+    padding: 0 var(--space-5);
+    background: rgba(10, 15, 10, 0.92);
+    backdrop-filter: var(--blur-panel);
+    -webkit-backdrop-filter: var(--blur-panel);
+    border-bottom: 1px solid var(--border);
+    border-bottom-left-radius: var(--radius-lg);
+    border-bottom-right-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
     overflow: hidden;
-    background: var(--surface);
+    transform: translateY(-6px);
+    transition: max-height 0.45s var(--ease-out), opacity 0.3s var(--ease-smooth),
+      transform 0.35s var(--ease-out), padding var(--transition-base);
+  }
+
+  nav.active {
+    max-height: 32rem;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    padding: var(--space-4) var(--space-5) var(--space-5);
   }
 
   nav a, nav li {
     width: 100%;
     justify-content: center;
     text-align: center;
-    border-radius: 0;
-    padding: var(--space-4);
-    border-bottom: 1px solid var(--border);
+    padding: var(--space-3) var(--space-4);
   }
 
-  nav li a { justify-content: center; }
-  nav > *:last-child, nav li:last-child { border-bottom: none; }
+  nav li.user-menu {
+    flex-direction: column;
+    padding: var(--space-3) var(--space-4);
+  }
+
   nav a:hover, nav li:hover { background: var(--amber-soft); transform: none; }
 }
 
 @media (max-width: 480px) {
-  header { padding: var(--space-3); }
-  .logo { font-size: 24px; }
+  header { padding: var(--space-2) var(--space-3); }
+  .logo { font-size: 22px; }
+  .menu-toggle { width: 36px; height: 36px; font-size: 1.05rem; }
   nav a, nav li { font-size: 0.72rem; padding: var(--space-3); }
 }
 

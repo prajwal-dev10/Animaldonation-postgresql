@@ -16,66 +16,66 @@
 
 </head>
 
-
 <body>
-
 
 <header>
 
-    <a href="{{ url_for('main.home') }}">
+    <!-- Logo -->
+    <a href="{{ url_for('main.home') }}" class="logo-link">
 
         <div class="logo">
+
             <span class="logo-text">
                 Animal Welfare Donation
             </span>
+
         </div>
 
     </a>
 
+    <!-- Hamburger Menu -->
+    <button class="menu-toggle" id="menu-toggle">
+        ☰
+    </button>
 
-    <nav>
+    <!-- Navigation -->
+    <nav id="navbar">
 
         <a href="{{ url_for('main.home') }}">
             HOME
         </a>
 
-
         <a href="{{ url_for('main.showanimals') }}">
             Animal
         </a>
-
 
         <a href="{{ url_for('main.showevents') }}">
             Events
         </a>
 
-
-
         {% if current_user.is_authenticated %}
 
-            <li style="color: var(--white);">
+            <li class="user-menu">
 
-                {{ current_user.username }}
+                <span>{{ current_user.username }}</span>
 
                 <a href="{{ url_for('main.logout') }}">
-                    :Logout
+                    Logout
                 </a>
 
             </li>
-
 
         {% else %}
 
-            <li>
+            <li class="user-menu">
+
                 <a href="{{ url_for('main.login') }}">
                     Login
                 </a>
+
             </li>
 
-
         {% endif %}
-
-
 
 
         {% if current_user.is_authenticated and current_user.is_admin %}
@@ -84,34 +84,25 @@
                 Donor List
             </a>
 
-
             <a href="{{ url_for('main.addanimal') }}">
                 Add Animal
             </a>
-
 
             <a href="{{ url_for('main.addevent') }}">
                 Add Event
             </a>
 
-
         {% endif %}
-
 
     </nav>
 
-
 </header>
-
-
 
 
 
 {% block content %}
 
 {% endblock content %}
-
-
 
 
 
@@ -133,13 +124,36 @@
 
 
 
-
-
+<!-- Lottie -->
 <script
 src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js"
 type="module">
 </script>
 
+<!-- Mobile Navbar -->
+<script>
+
+const menuToggle = document.getElementById("menu-toggle");
+const navbar = document.getElementById("navbar");
+
+menuToggle.addEventListener("click", () => {
+    navbar.classList.toggle("active");
+});
+
+// Close menu after clicking a link (mobile)
+document.querySelectorAll("#navbar a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        if (window.innerWidth <= 992) {
+            navbar.classList.remove("active");
+        }
+
+    });
+
+});
+
+</script>
 
 </body>
 
