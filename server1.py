@@ -11,7 +11,7 @@ from bcrypt import hashpw,checkpw,gensalt
 from forms import AnimalForm,LoginForm,SignupForm,addeventForm,DonationForm
 from dotenv import load_dotenv
 import os
-from .models import Animal, User, Event, Donate
+
 
 load_dotenv()
 
