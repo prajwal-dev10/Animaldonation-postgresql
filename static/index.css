@@ -581,7 +581,20 @@ nav li.user-menu a:hover { background: transparent; transform: none; text-decora
   overflow: hidden;
 }
 
-.hero-impact h1 { font-size: clamp(2rem, 2.2vw + 1.2rem, 3.4rem); margin-bottom: var(--space-5); font-weight: 500; }
+/* The hero panel glows amber (lantern effect), so the shared amber/sage
+   gradient text-clip reads as gold-on-gold here. Swap to a solid warm
+   paper tone with a soft amber halo instead — stays in the same palette,
+   just legible against the glow. */
+.hero-impact h1 {
+  font-size: clamp(2rem, 2.2vw + 1.2rem, 3.4rem);
+  margin-bottom: var(--space-5);
+  font-weight: 500;
+  background: none;
+  background-clip: border-box;
+  -webkit-background-clip: border-box;
+  color: var(--text-strong);
+  text-shadow: 0 0 26px var(--amber-glow), 0 2px 16px rgba(4, 3, 1, 0.5);
+}
 
 .hero-impact p {
   font-size: 1.12rem;
